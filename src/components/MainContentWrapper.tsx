@@ -1,7 +1,9 @@
+import SummaryTransations from "./SummaryTransations";
+
 const MainContentWrapper = () => {
   return (
-    <div className="flex flex-col items-center bg-red-400">
-      <strong>Main content Wrapper</strong>
+    <div className="w-[100%] max-w-[1120px] mx-auto px-6">
+      <SummaryTransations />
     </div>
   );
 };
