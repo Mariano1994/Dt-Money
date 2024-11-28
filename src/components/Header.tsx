@@ -9,7 +9,7 @@ const Header = () => {
         <img src={logo} alt="application logo" />
         <Dialog.Root>
           <Dialog.Trigger asChild>
-            <button className="h-12 transition-all bg-green-500 px-4 rounded-md text-white font-semibold hover:brightness-90">
+            <button className="h-12 transition-all bg-green-500 px-4 rounded-md text-white font-semibold outline-none hover:brightness-90 focus:outline-green-300">
               New transaction
             </button>
           </Dialog.Trigger>

@@ -10,7 +10,7 @@ const Searchbar = () => {
       />
       <button
         type="submit"
-        className="group flex items-center gap-2 border border-solid p-[0.9rem] border-green-300 rounded-md transition-all hover:bg-green-300
+        className="group flex items-center gap-2 border border-solid p-[0.9rem] border-green-300 rounded-md outline-none transition-all hover:bg-green-300 focus:outline-green-300
       "
       >
         <MagnifyingGlass
