@@ -1,0 +1,37 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "type": "income",
+      "description": "Desenvolvimento do site",
+      "category": "Sell",
+      "price": 1440,
+      "createdAt": "2024-11-29T12:43:49.196Z"
+    },
+    {
+      "id": 2,
+      "type": "outcome",
+      "description": "Visita ao CV Louge",
+      "category": "Lazer",
+      "price": 1440,
+      "createdAt": "2024-10-25T12:43:49.196Z"
+    },
+    {
+      "id": 3,
+      "type": "outcome",
+      "description": "Visita ao CV Louge",
+      "category": "Lazer em Familia",
+      "price": 2440,
+      "createdAt": "2024-10-25T12:43:49.196Z"
+    },
+
+    {
+      "id": 4,
+      "type": "income",
+      "description": "Reparacao de computador",
+      "category": "Venda",
+      "price": 5440,
+      "createdAt": "2024-10-25T12:43:49.196Z"
+    }
+  ]
+}

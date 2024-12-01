@@ -1,36 +1,33 @@
+import { useEffect, useState } from "react";
+import Transaction from "./Transaction";
+
+export interface TransactionsPros {
+  id: number;
+  description: string;
+  category: string;
+  type: "income" | "outcome";
+  price: number;
+  createdAt: Date;
+}
+
 const TransactionsTable = () => {
+  const [transactios, setTransactios] = useState<TransactionsPros[]>([]);
+  async function getTransactions() {
+    const transactionData = await fetch("http://localhost:3000/transactions");
+    const transactions = await transactionData.json();
+
+    setTransactios(transactions);
+  }
+  useEffect(() => {
+    getTransactions();
+  }, [transactios]);
+
   return (
     <table className="w-[100%] max-w-[1120px] my-6 mx-auto py-0 border-spacing-y-2 border-separate ">
       <tbody className="text-gray-300">
-        <tr>
-          <td
-            width="50%"
-            className="py-5 px-8 bg-gray-700 rounded-bl-md rounded-tl-md"
-          >
-            {" "}
-            Desenvolvimento do site
-          </td>
-          <td className="py-5 px-8 bg-gray-700 text-green-300"> $ 12.000,00</td>
-          <td className="py-5 px-8 bg-gray-700"> Sell</td>
-          <td className="py-5 px-8 bg-gray-700 rounded-br-md rounded-tr-md">
-            13/05/2024
-          </td>
-        </tr>
-
-        <tr>
-          <td
-            width="50%"
-            className="py-5 px-8 bg-gray-700 rounded-bl-md rounded-tl-md"
-          >
-            {" "}
-            Desenvolvimento do site
-          </td>
-          <td className="py-5 px-8 bg-gray-700 text-red-300 "> $ -3.000,00</td>
-          <td className="py-5 px-8 bg-gray-700"> Sell</td>
-          <td className="py-5 px-8 bg-gray-700 rounded-br-md rounded-tr-md">
-            13/05/2024
-          </td>
-        </tr>
+        {transactios.map((transaction) => (
+          <Transaction transaction={transaction} key={transaction.id} />
+        ))}
       </tbody>
     </table>
   );
