@@ -17,20 +17,19 @@
       "createdAt": "2024-10-25T12:43:49.196Z"
     },
     {
-      "id": 3,
-      "type": "outcome",
-      "description": "Visita ao CV Louge",
-      "category": "Lazer em Familia",
-      "price": 2440,
-      "createdAt": "2024-10-25T12:43:49.196Z"
-    },
-
-    {
       "id": 4,
       "type": "income",
       "description": "Reparacao de computador",
       "category": "Venda",
       "price": 5440,
+      "createdAt": "2024-10-25T12:43:49.196Z"
+    },
+    {
+      "id": 5,
+      "type": "outcome",
+      "description": "Pagamento da renda",
+      "category": "Venda",
+      "price": 11440,
       "createdAt": "2024-10-25T12:43:49.196Z"
     }
   ]
