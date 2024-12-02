@@ -28,6 +28,7 @@ export function TransactionsContextProvider({ children }: ChildrenPros) {
 
     setTransactions(transactions);
   }
+
   useEffect(() => {
     getTransactions();
   }, [transactions]);

@@ -1,3 +1,4 @@
+import { dateFormatter, priceFomatter } from "../utils/formmaters";
 import { TransactionsPros } from "./TransactionsTable";
 
 interface TransactionProps {
@@ -19,12 +20,12 @@ const Transaction = ({ transaction }: TransactionProps) => {
           transaction.type === "income" ? "text-green-300" : "text-red-300"
         } `}
       >
-        {" "}
-        $ {transaction.price}
+        {transaction.type === "outcome" && "- "}
+        {priceFomatter.format(transaction.price)}
       </td>
       <td className="py-5 px-8 bg-gray-700"> {transaction.category}</td>
       <td className="py-5 px-8 bg-gray-700 rounded-br-md rounded-tr-md">
-        13/05/2024
+        {dateFormatter.format(new Date(transaction.createdAt))}
       </td>
     </tr>
   );
