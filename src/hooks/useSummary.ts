@@ -2,18 +2,17 @@ import { useTransactions } from "../contexts/TransactionsContext";
 
 export const useSummary = () => {
   const { transactions } = useTransactions();
-
   const summary = transactions.reduce(
-    (c, transaction) => {
+    (acc, transaction) => {
       if (transaction.type === "income") {
-        c.income += transaction.price;
+        acc.income += transaction.price;
       } else {
-        c.outcome += transaction.price;
+        acc.outcome += transaction.price;
       }
 
-      c.total = c.income - c.outcome;
+      acc.total = acc.income - acc.outcome;
 
-      return c;
+      return acc;
     },
     {
       income: 0,
