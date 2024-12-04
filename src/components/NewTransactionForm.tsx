@@ -1,6 +1,5 @@
 import { Controller, useForm } from "react-hook-form";
 import * as RadioGroup from "@radix-ui/react-radio-group";
-import NewTransactionType from "./NewTransactionType";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowCircleDown, ArrowCircleUp } from "phosphor-react";
