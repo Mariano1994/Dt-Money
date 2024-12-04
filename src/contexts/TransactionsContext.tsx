@@ -38,7 +38,7 @@ export function TransactionsContextProvider({ children }: ChildrenPros) {
 
   useEffect(() => {
     getTransactions();
-  }, [transactions]);
+  }, []);
 
   return (
     <TransactioinsContext.Provider value={{ transactions, getTransactions }}>
