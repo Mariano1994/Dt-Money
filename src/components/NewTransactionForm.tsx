@@ -1,24 +1,30 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import * as RadioGroup from "@radix-ui/react-radio-group";
 import NewTransactionType from "./NewTransactionType";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowCircleDown, ArrowCircleUp } from "phosphor-react";
 
 const NewTransactionFormSchema = z.object({
   description: z.string(),
   price: z.number(),
   category: z.string(),
-  // type: z.enum(["income", "outcome"]),
+  type: z.enum(["income", "outcome"]),
 });
 
 type NewTransactionFormInputs = z.infer<typeof NewTransactionFormSchema>;
 
 const NewTransactionForm = () => {
   const {
+    control,
     handleSubmit,
     register,
     formState: { isSubmitting },
   } = useForm<NewTransactionFormInputs>({
     resolver: zodResolver(NewTransactionFormSchema),
+    defaultValues: {
+      type: "income",
+    },
   });
 
   async function handlerSubmiteNewTransaction(data: NewTransactionFormInputs) {
@@ -55,7 +61,44 @@ const NewTransactionForm = () => {
         {...register("category")}
       />
 
-      <NewTransactionType />
+      <Controller
+        control={control}
+        name="type"
+        render={({ field }) => {
+          return (
+            <RadioGroup.Root onValueChange={field.onChange} value={field.value}>
+              <div className="grid grid-cols-2 gap-2 mt-2">
+                <RadioGroup.Item
+                  value="income"
+                  className="group flex items-center justify-center p-4 bg-gray-700 gap-2 rounded-md data-[state=checked]:bg-green-300 data-[state=unchecked]:hover:bg-gray-600 "
+                >
+                  <ArrowCircleUp
+                    className="text-green-300 group-data-[state=checked]:text-white group-data-[state=unchecked]:text-green-300"
+                    size={24}
+                  />
+                  <span className="text-gray-300 group-data-[state=checked]:text-white group-data-[state=unchecked]:text-gray-300">
+                    Income
+                  </span>
+                </RadioGroup.Item>
+
+                <RadioGroup.Item
+                  value="outcome"
+                  className="group flex items-center justify-center p-4 bg-gray-700 gap-2 rounded-md data-[state=checked]:bg-red-300 data-[state=unchecked]:hover:bg-gray-600"
+                >
+                  <ArrowCircleDown
+                    className="text-red-300 group-data-[state=checked]:text-white group-data-[state=unchecked]:text-red-300"
+                    size={24}
+                  />
+                  <span className="text-gray-300 group-data-[state=checked]:text-white group-data-[state=unchecked]:text-gray-300">
+                    Outcome
+                  </span>
+                </RadioGroup.Item>
+              </div>
+            </RadioGroup.Root>
+          );
+        }}
+      />
+
       <button
         disabled={isSubmitting}
         type="submit"
