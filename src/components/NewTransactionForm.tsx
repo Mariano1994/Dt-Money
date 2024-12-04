@@ -3,6 +3,7 @@ import * as RadioGroup from "@radix-ui/react-radio-group";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowCircleDown, ArrowCircleUp } from "phosphor-react";
+import { api } from "../lib/axios";
 
 const NewTransactionFormSchema = z.object({
   description: z.string(),
@@ -18,6 +19,7 @@ const NewTransactionForm = () => {
     control,
     handleSubmit,
     register,
+    reset,
     formState: { isSubmitting },
   } = useForm<NewTransactionFormInputs>({
     resolver: zodResolver(NewTransactionFormSchema),
@@ -27,8 +29,17 @@ const NewTransactionForm = () => {
   });
 
   async function handlerSubmiteNewTransaction(data: NewTransactionFormInputs) {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(data);
+    const { description, type, category, price } = data;
+
+    await api.post("transactions", {
+      description,
+      type,
+      category,
+      price,
+      createdAt: new Date(),
+    });
+
+    reset();
   }
 
   return (

@@ -27,6 +27,8 @@ export function TransactionsContextProvider({ children }: ChildrenPros) {
   async function getTransactions(query?: string) {
     const response = await api.get("transactions", {
       params: {
+        _sort: "createdAt",
+        _order: "desc",
         q: query,
       },
     });
@@ -36,7 +38,7 @@ export function TransactionsContextProvider({ children }: ChildrenPros) {
 
   useEffect(() => {
     getTransactions();
-  }, []);
+  }, [transactions]);
 
   return (
     <TransactioinsContext.Provider value={{ transactions, getTransactions }}>
